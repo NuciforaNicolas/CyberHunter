@@ -142,14 +142,19 @@ public class PlayerController : MonoBehaviour {
 
 	void OnBecameInvisible()
 	{
-		FallingDown();
+		Debug.Log("on invisible");
+		if(gameObject.activeInHierarchy)
+			FallingDown();
 	}
 
 	void FallingDown()
 	{
-		Player.instance.TakeDamage(100);
+		Player.instance.TakeDamage(Player.instance.GetMaxHealth());
 	}
 
+	public void setDeath(){
+		anim.SetBool("isDeath", true);
+	}
 
 	/*void Move(float _speed, bool _flipX){
 		transform.position += Vector3.right * Time.deltaTime * _speed;

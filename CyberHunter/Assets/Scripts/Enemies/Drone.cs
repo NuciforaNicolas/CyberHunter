@@ -12,10 +12,12 @@ public class Drone : Enemy
 		if (other.tag == "CheckPointA"){
 			speed *= -1;
 			transform.localScale = new Vector3(-1, 1, 1);
+			healthBar.transform.localScale = new Vector3(-1, 1, 1);
 		}
 		if(other.tag == "CheckPointB"){
 			speed *= -1;
 			transform.localScale = new Vector3(1, 1, 1);
+			healthBar.transform.localScale = new Vector3(1, 1, 1);
 		}
 	}
 	void Update(){

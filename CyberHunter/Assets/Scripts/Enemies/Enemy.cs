@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Enemy : MonoBehaviour, IKillabble<float> {
 
@@ -8,6 +9,7 @@ public class Enemy : MonoBehaviour, IKillabble<float> {
 	[SerializeField] public float maxHealth;
 	[SerializeField] protected int coins;
 	[SerializeField] float damage;
+	[SerializeField] protected Image healthBar;
 	bool isDeath = false;
 	protected Animator anim;
 
@@ -62,6 +64,9 @@ public class Enemy : MonoBehaviour, IKillabble<float> {
 		if(!isDeath)
 			SoundManager.instance.EnemyHitPlay();
 		health -= damage;
+		float fill = health / maxHealth;
+		if(healthBar != null)
+			healthBar.fillAmount = fill;
 		if(health <= 0){
 			Death();
 		}

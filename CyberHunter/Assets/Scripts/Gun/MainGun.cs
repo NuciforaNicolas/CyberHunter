@@ -1,11 +1,13 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class MainGun : MonoBehaviour {
 
-	public enum GunType {normal = 1, power1 = 2, power2 = 5, power3 = 10};
+	public enum GunType {normal = 1, power1 = 2, power2 = 4, power3 = 10};
 	public GunType gun;
+	[SerializeField] Text attack;
 
 	protected void SetGunType(int type){
 		switch(type){
@@ -18,6 +20,6 @@ public class MainGun : MonoBehaviour {
 			default: gun = GunType.normal; 
 				break;
 		}
-		
+		attack.text = ((int)gun).ToString();
 	}
 }
