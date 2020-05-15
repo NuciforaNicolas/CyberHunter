@@ -54,7 +54,7 @@ public class Enemy : MonoBehaviour, IKillabble<float> {
 		}
 	}
 
-	public void Death(){
+	public virtual void Death(){
 		Debug.Log("Enemy destroyed");
 		StartDeathRoutine();
 	}

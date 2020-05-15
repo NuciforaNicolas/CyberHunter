@@ -28,6 +28,12 @@ public class SpaceShip : Enemy
 		Move(-speed);
 	}
 
+	public override void Death()
+	{
+		base.Death();
+		GameManager.instance.Complete();
+	}
+
 	protected virtual void Move(float speed)
 	{
 		transform.parent.Move(speed);

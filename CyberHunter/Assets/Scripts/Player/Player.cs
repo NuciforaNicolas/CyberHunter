@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+
 public class Player : MonoBehaviour, IKillabble<float> {
 	public float health;
 	[SerializeField] float maxHealth;
@@ -60,6 +61,7 @@ public class Player : MonoBehaviour, IKillabble<float> {
 		GameObject player = GameObject.FindGameObjectWithTag("Player");
 		if(player != null)
 			StartCoroutine("PlayerDeathAnim", player);
+		GameManager.instance.GameOver();
 	}
 
 	public void TakeDamage(float damage){

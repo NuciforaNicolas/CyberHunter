@@ -1,12 +1,13 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.UI;
+using UnityEngine.EventSystems;
+using UnityStandardAssets.CrossPlatformInput;
 public class PlayerController : MonoBehaviour {
 
 	[SerializeField] float speed;
 	[SerializeField] float force;
-	[SerializeField] float push;
 	[SerializeField] Animator anim;
 	[SerializeField] protected float timeToSpawn;
 	[SerializeField] protected float timePowerUp;
@@ -14,7 +15,7 @@ public class PlayerController : MonoBehaviour {
 	[SerializeField] int power2_Cost;
 	[SerializeField] int power3_Cost;
 	float tSpawnCounter = 0;
-	bool isJumping = false;
+	public bool isJumping = false;
 	bool isPowerActive = false;
 
 	void Awake(){
@@ -22,63 +23,146 @@ public class PlayerController : MonoBehaviour {
 	}
 
 	void Update(){
+		
+
 		if(Time.timeScale != 0){
-			if(Input.GetKey(KeyCode.D)){
-				transform.Move(speed);
+			/*if(Input.GetKey(KeyCode.D)){
+				MoveRight();
 				Flip(1);
-				anim.SetFloat("running", 1f);
 			}
 			if (Input.GetKeyUp(KeyCode.D))
 				anim.SetFloat("running", 0);
 
 			if (Input.GetKey(KeyCode.A)){
-				transform.Move(-speed);
+				MoveLeft();
 				Flip(-1);
-				anim.SetFloat("running", 1f);
 			}
 			if(Input.GetKeyUp(KeyCode.A))
-				anim.SetFloat("running", 0);
+				anim.SetFloat("running", 0);*/
 
-			if (Input.GetKeyDown(KeyCode.W)){
-				Jump();
-				anim.SetBool("isJumping", true);
+			if(CrossPlatformInputManager.GetButton("Right")){
+				MoveRight();
+				Flip(1);
+			}
+			if (CrossPlatformInputManager.GetButton("Left"))
+			{
+				MoveLeft();
+				Flip(-1);
+			}
+			if (CrossPlatformInputManager.GetButtonUp("Left") || CrossPlatformInputManager.GetButtonUp("Right"))
+			{
+				anim.SetFloat("running", 0);
 			}
 
+			/*if (Input.GetKeyDown(KeyCode.W)){
+				Jump();
+			}*/
+
+			if(CrossPlatformInputManager.GetButtonDown("Jump"))
+				Jump();
+
+
 			tSpawnCounter += Time.deltaTime / timeToSpawn;
-			if (Input.GetKey(KeyCode.Space) && tSpawnCounter > timeToSpawn){
+			/*if (Input.GetKey(KeyCode.Space) && tSpawnCounter > timeToSpawn){
+				StartShoot();
+				SoundManager.instance.GunShootPlay();
+				Shoot();
+				tSpawnCounter = 0;
+			}*/
+			
+			if(CrossPlatformInputManager.GetButton("Fire") && tSpawnCounter >= timeToSpawn){
 				StartShoot();
 				SoundManager.instance.GunShootPlay();
 				Shoot();
 				tSpawnCounter = 0;
 			}
-			
-			if (Input.GetKeyUp(KeyCode.Space)){
+
+			/*if (Input.GetKeyUp(KeyCode.Space)){
+				StopShoot();
+				SoundManager.instance.GunShootStop();
+			}*/
+
+			if(CrossPlatformInputManager.GetButtonUp("Fire")){
 				StopShoot();
 				SoundManager.instance.GunShootStop();
 			}
 
-			if(Input.GetKeyDown(KeyCode.X) && !isPowerActive && CoinManager.instance.GetCoins() >= power1_Cost)
+			/*if(Input.GetKeyDown(KeyCode.X))
 			{
-				isPowerActive = true;
-				StartCoroutine("PowerUp", 1);
-			}
-			if (Input.GetKeyDown(KeyCode.C) && !isPowerActive && CoinManager.instance.GetCoins() >= power2_Cost)
-			{
-				isPowerActive = true;
-				StartCoroutine("PowerUp", 2);
-			}
-			if (Input.GetKeyDown(KeyCode.V) && !isPowerActive && CoinManager.instance.GetCoins() >= power3_Cost)
-			{
-				isPowerActive = true;
-				StartCoroutine("PowerUp", 3);
+				//isPowerActive = true;
+				SetPowerUp(1);
+			}*/
+
+			if(CrossPlatformInputManager.GetButtonDown("Power1")){
+				SetPowerUp(1);
 			}
 
-			if (Input.GetKeyDown(KeyCode.E) && Player.instance.GetHealth() < Player.instance.GetMaxHealth() && CoinManager.instance.GetCoins() > 0){
-				Player.instance.Heal();
+			/*if (Input.GetKeyDown(KeyCode.C))
+			{
+				//isPowerActive = true;
+				SetPowerUp(2);
+			}*/
+
+			if (CrossPlatformInputManager.GetButtonDown("Power2"))
+			{
+				SetPowerUp(2);
 			}
+
+			/*if (Input.GetKeyDown(KeyCode.V))
+			{
+				//isPowerActive = true;
+				SetPowerUp(3);
+			}*/
+
+			if (CrossPlatformInputManager.GetButtonDown("Power3"))
+			{
+				SetPowerUp(3);
+			}
+
+			/*if (Input.GetKeyDown(KeyCode.E) && Player.instance.GetHealth() < Player.instance.GetMaxHealth() && CoinManager.instance.GetCoins() > 0){
+				Player.instance.Heal();
+			}*/
+
+			if(CrossPlatformInputManager.GetButtonDown("Heal") && Player.instance.GetHealth() < Player.instance.GetMaxHealth() && CoinManager.instance.GetCoins() > 0)
+				Player.instance.Heal();
 		}
 
 			
+	}
+
+	public void MoveLeft(){
+		transform.Move(-speed);
+		anim.SetFloat("running", 1f);
+	}
+
+	public void MoveRight(){
+		transform.Move(speed);
+		anim.SetFloat("running", 1f);
+	}
+
+	public void SetPowerUp(int type){
+		if(!isPowerActive){
+			bool toActive = false;
+
+			switch(type){
+				case 1:
+					if (CoinManager.instance.GetCoins() > power1_Cost)
+						toActive = true;
+					break;
+				case 2:
+					if (CoinManager.instance.GetCoins() > power2_Cost)
+						toActive = true;
+					break;
+				case 3:
+					if (CoinManager.instance.GetCoins() > power3_Cost)
+						toActive = true;
+					break;
+			}
+			if(toActive){
+				isPowerActive = true;
+				StartCoroutine("PowerUp", type);
+			}
+		}
 	}
 
 	IEnumerator PowerUp(int type){
@@ -109,7 +193,7 @@ public class PlayerController : MonoBehaviour {
 		isPowerActive = false;
 	}
 
-	void Shoot(){
+	public void Shoot(){
 		transform.GetChild(0).GetComponent<Gun>().Shoot(transform.localScale.x);
 	}
 
@@ -128,10 +212,11 @@ public class PlayerController : MonoBehaviour {
 		}
 	}
 
-	void Jump(){
+	public void Jump(){
 		if(!isJumping){ //se il giocatore è ancora in aria, non sarà possibile saltare ulteriormente 
 			SoundManager.instance.PlayerJumpPlay();
 			gameObject.GetComponent<Rigidbody2D>().AddForce(transform.up * force, ForceMode2D.Impulse); //effettua il salto
+			anim.SetBool("isJumping", true);
 			isJumping = true;
 		}
 	}
