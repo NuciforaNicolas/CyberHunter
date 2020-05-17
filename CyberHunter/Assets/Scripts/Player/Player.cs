@@ -25,11 +25,28 @@ public class Player : MonoBehaviour, IKillabble<float> {
 			health += heal;
 			float fill = heal / maxHealth;
 			healthBar.fillAmount += fill;
+			ChangeHealthBarColor(fill, true);
+
 			CoinManager.instance.RemoveCoins(healCost);
 			if (health > maxHealth)
 				health = maxHealth;
 		}
 			
+	}
+
+	void ChangeHealthBarColor(float fill, bool isToFill){
+		if(!isToFill){
+			if (healthBar.fillAmount >= 0.5)
+				healthBar.color = Color.Lerp(Color.green, Color.yellow, 1 - fill);
+			if (healthBar.fillAmount < 0.5)
+				healthBar.color = Color.Lerp(Color.yellow, Color.red, 1 - fill);
+		}
+		if(isToFill){
+			if (healthBar.fillAmount >= 0.5)
+				healthBar.color = Color.Lerp(Color.yellow, Color.green, 1 - fill);
+			if (healthBar.fillAmount < 0.5)
+				healthBar.color = Color.Lerp(Color.red, Color.yellow, 1 - fill);
+		}
 	}
 
 	public float GetHealth(){
@@ -38,6 +55,10 @@ public class Player : MonoBehaviour, IKillabble<float> {
 
 	public float GetMaxHealth(){
 		return maxHealth;
+	}
+
+	public int GetHealCost(){
+		return healCost;
 	}
 
 	IEnumerator PlayerDeathAnim(GameObject player){
@@ -49,9 +70,9 @@ public class Player : MonoBehaviour, IKillabble<float> {
 				SoundManager.instance.GunShootStop();
 			}
 			yield return new WaitForSeconds(0.5f);
-			CoinManager.instance.SaveCoins();
+			CoinManager.instance.RemoveCoins((CoinManager.instance.GetCoins() * 20) / 100);
+			//CoinManager.instance.SaveCoins(); //TO IMPLEMENT WITH CHECKPOINTS
 			player.SetActive(false);
-			Time.timeScale = 0;
 		}
 	}
 
@@ -69,6 +90,8 @@ public class Player : MonoBehaviour, IKillabble<float> {
 		float fill = health / maxHealth;
 		if(healthBar != null) //rimuove un errore in cui l'immagine viene usata quando è distrutta
 			healthBar.fillAmount = fill;
+		ChangeHealthBarColor(fill, false);
+
 		if(SoundManager.instance != null)
 			SoundManager.instance.PlayerHitPlay();
 		if(health <= 0){

@@ -10,23 +10,31 @@ public class GameManager : MonoBehaviour
     [SerializeField] Canvas playerPanel;
     [SerializeField] Canvas gameOverPanel;
     [SerializeField] Canvas completePanel;
-
+    public bool gameOver;
     private void Start()
     {
         instance = this;
+        gameOver = false;
         Time.timeScale = 1;
+    }
+
+    private void Update()
+    {
+        if (gameOver)
+            Time.timeScale = 0;
     }
 
     public void GameOver(){
         playerPanel.gameObject.SetActive(false);
         gameOverPanel.gameObject.SetActive(true);
+        gameOver = true;
     }
 
     public void Complete()
     {
-        playerPanel.GetComponent<ButtonHandler>().SetUpState();
         playerPanel.gameObject.SetActive(false);
         completePanel.gameObject.SetActive(true);
+        gameOver = true;
     }
 
     public void RestartGame(){

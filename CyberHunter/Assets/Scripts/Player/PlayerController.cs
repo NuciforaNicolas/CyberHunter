@@ -23,10 +23,14 @@ public class PlayerController : MonoBehaviour {
 	}
 
 	void Update(){
-		
 
-		if(Time.timeScale != 0){
-			/*if(Input.GetKey(KeyCode.D)){
+
+		if (Time.timeScale != 0)
+		{
+
+			///BEGIN WINDOWS CONTROLS
+			/*
+			if(Input.GetKey(KeyCode.D)){
 				MoveRight();
 				Flip(1);
 			}
@@ -38,9 +42,57 @@ public class PlayerController : MonoBehaviour {
 				Flip(-1);
 			}
 			if(Input.GetKeyUp(KeyCode.A))
-				anim.SetFloat("running", 0);*/
+				anim.SetFloat("running", 0);
 
-			if(CrossPlatformInputManager.GetButton("Right")){
+			if (Input.GetKeyDown(KeyCode.W))
+			{
+				Jump();
+			}
+
+			tSpawnCounter += Time.deltaTime / timeToSpawn;
+			if (Input.GetKey(KeyCode.Space) && tSpawnCounter > timeToSpawn)
+			{
+				StartShoot();
+				SoundManager.instance.GunShootPlay();
+				Shoot();
+				tSpawnCounter = 0;
+			}
+
+			if (Input.GetKeyUp(KeyCode.Space))
+			{
+				StopShoot();
+				SoundManager.instance.GunShootStop();
+			}
+
+			if (Input.GetKeyDown(KeyCode.X))
+			{
+				//isPowerActive = true;
+				SetPowerUp(1);
+			}
+
+			if (Input.GetKeyDown(KeyCode.C))
+			{
+				//isPowerActive = true;
+				SetPowerUp(2);
+			}
+
+			if (Input.GetKeyDown(KeyCode.V))
+			{
+				//isPowerActive = true;
+				SetPowerUp(3);
+			}
+
+			if (Input.GetKeyDown(KeyCode.E))
+			{
+				Player.instance.Heal();
+			}
+			*/
+			/// END WINDOWS INPUT CONTROLS
+
+			/// BEGIN MOBILE INPUT CONTROLS
+
+			if (CrossPlatformInputManager.GetButton("Right"))
+			{
 				MoveRight();
 				Flip(1);
 			}
@@ -54,93 +106,63 @@ public class PlayerController : MonoBehaviour {
 				anim.SetFloat("running", 0);
 			}
 
-			/*if (Input.GetKeyDown(KeyCode.W)){
-				Jump();
-			}*/
-
-			if(CrossPlatformInputManager.GetButtonDown("Jump"))
-				Jump();
-
+			if (CrossPlatformInputManager.GetButtonDown("Jump"))
+					Jump();
 
 			tSpawnCounter += Time.deltaTime / timeToSpawn;
-			/*if (Input.GetKey(KeyCode.Space) && tSpawnCounter > timeToSpawn){
-				StartShoot();
-				SoundManager.instance.GunShootPlay();
-				Shoot();
-				tSpawnCounter = 0;
-			}*/
-			
-			if(CrossPlatformInputManager.GetButton("Fire") && tSpawnCounter >= timeToSpawn){
+			if (CrossPlatformInputManager.GetButton("Fire") && tSpawnCounter >= timeToSpawn)
+			{
 				StartShoot();
 				SoundManager.instance.GunShootPlay();
 				Shoot();
 				tSpawnCounter = 0;
 			}
 
-			/*if (Input.GetKeyUp(KeyCode.Space)){
-				StopShoot();
-				SoundManager.instance.GunShootStop();
-			}*/
-
-			if(CrossPlatformInputManager.GetButtonUp("Fire")){
+			if (CrossPlatformInputManager.GetButtonUp("Fire"))
+			{
 				StopShoot();
 				SoundManager.instance.GunShootStop();
 			}
 
-			/*if(Input.GetKeyDown(KeyCode.X))
+			if (CrossPlatformInputManager.GetButtonDown("Power1"))
 			{
-				//isPowerActive = true;
-				SetPowerUp(1);
-			}*/
-
-			if(CrossPlatformInputManager.GetButtonDown("Power1")){
 				SetPowerUp(1);
 			}
 
-			/*if (Input.GetKeyDown(KeyCode.C))
-			{
-				//isPowerActive = true;
-				SetPowerUp(2);
-			}*/
 
 			if (CrossPlatformInputManager.GetButtonDown("Power2"))
 			{
 				SetPowerUp(2);
 			}
 
-			/*if (Input.GetKeyDown(KeyCode.V))
-			{
-				//isPowerActive = true;
-				SetPowerUp(3);
-			}*/
-
 			if (CrossPlatformInputManager.GetButtonDown("Power3"))
 			{
 				SetPowerUp(3);
 			}
 
-			/*if (Input.GetKeyDown(KeyCode.E) && Player.instance.GetHealth() < Player.instance.GetMaxHealth() && CoinManager.instance.GetCoins() > 0){
-				Player.instance.Heal();
-			}*/
+			if (CrossPlatformInputManager.GetButtonDown("Heal"))
+				HealPlayer();
 
-			if(CrossPlatformInputManager.GetButtonDown("Heal") && Player.instance.GetHealth() < Player.instance.GetMaxHealth() && CoinManager.instance.GetCoins() > 0)
-				Player.instance.Heal();
-		}
-
-			
+			/// END MOBILE INPUT CONTROLS
+		}	
 	}
 
-	public void MoveLeft(){
+	void MoveLeft(){
 		transform.Move(-speed);
 		anim.SetFloat("running", 1f);
 	}
 
-	public void MoveRight(){
+	void MoveRight(){
 		transform.Move(speed);
 		anim.SetFloat("running", 1f);
 	}
 
-	public void SetPowerUp(int type){
+	void HealPlayer(){
+		if (Player.instance.GetHealth() < Player.instance.GetMaxHealth() && CoinManager.instance.GetCoins() > Player.instance.GetHealCost())
+			Player.instance.Heal();
+	}
+
+	void SetPowerUp(int type){
 		if(!isPowerActive){
 			bool toActive = false;
 
@@ -193,7 +215,7 @@ public class PlayerController : MonoBehaviour {
 		isPowerActive = false;
 	}
 
-	public void Shoot(){
+	void Shoot(){
 		transform.GetChild(0).GetComponent<Gun>().Shoot(transform.localScale.x);
 	}
 
@@ -212,7 +234,7 @@ public class PlayerController : MonoBehaviour {
 		}
 	}
 
-	public void Jump(){
+	void Jump(){
 		if(!isJumping){ //se il giocatore è ancora in aria, non sarà possibile saltare ulteriormente 
 			SoundManager.instance.PlayerJumpPlay();
 			gameObject.GetComponent<Rigidbody2D>().AddForce(transform.up * force, ForceMode2D.Impulse); //effettua il salto
