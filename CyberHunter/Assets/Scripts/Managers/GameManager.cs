@@ -6,8 +6,9 @@ using UnityEngine.SceneManagement;
 public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
-    [SerializeField] Canvas playerPanel, gameOverPanel, completePanel, optionPanel;
-    bool stopGame;
+    [SerializeField] GameObject menuManager, complete, gameover, input;
+    public static bool stopGame;
+
     private void Start()
     {
         instance = this;
@@ -23,40 +24,17 @@ public class GameManager : MonoBehaviour
     }
 
     public void GameOver(){
-        //playerPanel.gameObject.SetActive(false);
-        disableInputGui();
-        gameOverPanel.gameObject.SetActive(true);
+        menuManager.GetComponent<MenuManager>().OpenGameOverCanvas(gameover);
+        menuManager.GetComponent<MenuManager>().CloseInputCanvas(input);
+        stopGame = true;
     }
 
     public void Complete()
     {
-        //playerPanel.gameObject.SetActive(false);
-        disableInputGui();
-        completePanel.gameObject.SetActive(true);
-    }
-
-    public void OpenOptionMenu(){
-        disableInputGui();
-        optionPanel.gameObject.SetActive(true);
+        CoinManager.instance.SaveCoins();
+        menuManager.GetComponent<MenuManager>().OpenCompleteCanvas(complete);
+        menuManager.GetComponent<MenuManager>().CloseInputCanvas(input);
         stopGame = true;
-    }
-
-    public void CloseOptionMenu(){
-        optionPanel.gameObject.SetActive(false);
-        enableInputGui();
-        stopGame = false;
-    }
-
-    void disableInputGui(){
-        playerPanel.GetComponent<CanvasGroup>().interactable = false;
-        playerPanel.GetComponent<CanvasGroup>().blocksRaycasts = false;
-        playerPanel.GetComponent<CanvasGroup>().alpha = 0;
-    }
-
-    void enableInputGui(){
-        playerPanel.GetComponent<CanvasGroup>().interactable = true;
-        playerPanel.GetComponent<CanvasGroup>().blocksRaycasts = true;
-        playerPanel.GetComponent<CanvasGroup>().alpha = 1;
     }
 
     public void RestartGame(){

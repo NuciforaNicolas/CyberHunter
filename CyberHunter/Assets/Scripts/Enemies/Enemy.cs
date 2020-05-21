@@ -44,12 +44,12 @@ public class Enemy : MonoBehaviour, IKillabble<float> {
 
 		yield return new WaitForSeconds(0.5f);
 		gameObject.SetActive(false);
-		CoinManager.instance.AddCoins(coins);
 	}
 
 	void StartDeathRoutine(){
 		if(!isDeath){
 			isDeath = true; //la chiamata verrà eseguita una sola volta 
+			CoinManager.instance.AddCoins(coins);
 			StartCoroutine("DeathAnimation");
 		}
 	}

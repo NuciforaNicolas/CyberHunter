@@ -15,26 +15,39 @@ public class SoundManager : MonoBehaviour
         musicSource = gameObject.AddComponent<AudioSource>();
         musicSource.loop = true;
         musicSource.clip = soundTrack;
-        musicSource.volume = 0.20f;
+        musicSource.volume = SaveGame.GetMusicVolume();
         musicSource.Play();
 
         enemySource = gameObject.AddComponent<AudioSource>();
-        enemySource.volume = 0.5f;
+        enemySource.volume = SaveGame.GetSoundVolume();
 
         gunSource = gameObject.AddComponent<AudioSource>();
         gunSource.clip = gunShoot;
-        gunSource.volume = 1;
+        gunSource.volume = SaveGame.GetSoundVolume();
         gunSource.priority = 0;
 
         turretSource = gameObject.AddComponent<AudioSource>();
-        turretSource.volume = 0.2f;
+        turretSource.volume = SaveGame.GetSoundVolume();
 
         powerUpSource = gameObject.AddComponent<AudioSource>();
-        powerUpSource.volume = 0.5f;
+        powerUpSource.volume = SaveGame.GetSoundVolume();
 
         playerSource = gameObject.AddComponent<AudioSource>();
-        playerSource.volume = 0.5f;
+        playerSource.volume = SaveGame.GetSoundVolume();
         playerSource.priority = 0;
+    }
+
+    private void Update()
+    {
+        if(MenuManager.volumeChanged){
+            musicSource.volume = SaveGame.GetMusicVolume();
+            enemySource.volume = SaveGame.GetSoundVolume();
+            gunSource.volume = SaveGame.GetSoundVolume();
+            powerUpSource.volume = SaveGame.GetSoundVolume();
+            turretSource.volume = SaveGame.GetSoundVolume();
+            playerSource.volume = SaveGame.GetSoundVolume();
+            MenuManager.volumeChanged = false;
+        }
     }
 
     public void GunShootPlay(){

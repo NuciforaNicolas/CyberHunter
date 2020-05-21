@@ -14,6 +14,7 @@ ScriptsOnlyBuild:
     - Gun
     - HitBullet
     - HitBulletEnemy
+    - LeaderBoard
     - MenuManager
     - Player
     - PlayerController
@@ -47,8 +48,10 @@ ScriptsOnlyBuild:
     UnityEditor.Graphs.dll:
     - UnityEditor.Graphs.AnimationBlendTree.Graph
     - UnityEditor.Graphs.AnimationBlendTree.GraphGUI
+    - UnityEditor.Graphs.AnimationStateMachine.AnyStateNode
     - UnityEditor.Graphs.AnimationStateMachine.Graph
     - UnityEditor.Graphs.AnimationStateMachine.GraphGUI
+    - UnityEditor.Graphs.AnimationStateMachine.StateNode
     - UnityEditor.Graphs.AnimatorControllerTool
     UnityEditor.TestRunner.dll:
     - UnityEditor.TestTools.TestRunner.Api.CallbacksHolder
@@ -62,6 +65,8 @@ ScriptsOnlyBuild:
     - UnityEngine.UI.CanvasScaler
     - UnityEngine.UI.GraphicRaycaster
     - UnityEngine.UI.Image
+    - UnityEngine.UI.InputField
+    - UnityEngine.UI.Slider
     - UnityEngine.UI.Text
     com.unity.multiplayer-hlapi.Runtime.dll:
     - UnityEngine.Networking.NetworkCallbacks
@@ -122,6 +127,8 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 12038}
     - Class: 114
+      Script: {instanceID: 12368}
+    - Class: 114
       Script: {instanceID: 12436}
     - Class: 114
       Script: {instanceID: 12520}
@@ -148,6 +155,8 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 13518}
     - Class: 114
+      Script: {instanceID: 13698}
+    - Class: 114
       Script: {instanceID: 13852}
     - Class: 114
       Script: {instanceID: 13882}
@@ -165,6 +174,10 @@ ScriptsOnlyBuild:
       Script: {instanceID: 14948}
     - Class: 114
       Script: {instanceID: 15000}
+    - Class: 114
+      Script: {instanceID: 15064}
+    - Class: 114
+      Script: {instanceID: 269688}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 124
@@ -223,6 +236,8 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 13338}
     - Class: 114
+      Script: {instanceID: 13698}
+    - Class: 114
       Script: {instanceID: 14290}
     - Class: 114
       Script: {instanceID: 14406}
@@ -230,6 +245,10 @@ ScriptsOnlyBuild:
       Script: {instanceID: 14630}
     - Class: 114
       Script: {instanceID: 15000}
+    - Class: 114
+      Script: {instanceID: 15064}
+    - Class: 114
+      Script: {instanceID: 269688}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -247,6 +266,8 @@ ScriptsOnlyBuild:
     - Class: 223
       Script: {instanceID: 0}
     - Class: 224
+      Script: {instanceID: 0}
+    - Class: 225
       Script: {instanceID: 0}
   scriptHashData:
   - hash:
@@ -587,7 +608,7 @@ ScriptsOnlyBuild:
     className: SingleNodeBlocker
   - hash:
       serializedVersion: 2
-      Hash: cdb565ff33e0228550ec118561a38dbe
+      Hash: c5d503da85647a650dfbf2bcd323a8a4
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: GameManager
@@ -683,7 +704,7 @@ ScriptsOnlyBuild:
     className: GunController
   - hash:
       serializedVersion: 2
-      Hash: 8243ef2de2d3d968cbb6bb1a73e39d20
+      Hash: c1886d7e00946bfacdc9d5b5bd8b01bd
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: MenuManager
@@ -1499,7 +1520,7 @@ ScriptsOnlyBuild:
     className: ActivateOnKeypress
   - hash:
       serializedVersion: 2
-      Hash: 22c87eea375921619a541d913c0bc9cd
+      Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: TutorialManager
@@ -1713,6 +1734,12 @@ ScriptsOnlyBuild:
     assemblyName: Unity.Timeline.dll
     namespaceName: UnityEngine.Timeline
     className: PlayableTrack
+  - hash:
+      serializedVersion: 2
+      Hash: 37078a5b2ac7de93efbf6af93b8c9558
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: LeaderBoard
   platform: 13
   scenePathNames:
   - Assets/Scenes/Menu.unity

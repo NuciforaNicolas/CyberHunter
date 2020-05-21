@@ -5,40 +5,47 @@ using UnityEngine.UI;
 
 public class TutorialManager : MonoBehaviour
 {
-    [SerializeField] Canvas controls, extra, ui;
+    
+    public void openControlsTutorial(GameObject controls){
+        controls.GetComponent<CanvasGroup>().alpha = 1;
+        controls.GetComponent<CanvasGroup>().blocksRaycasts = true;
+        controls.GetComponent<CanvasGroup>().interactable = true;
+    }
 
-    private void Start()
+    public void closeControlsTutorial(GameObject controls)
     {
-        controls.gameObject.SetActive(false);
-        extra.gameObject.SetActive(false);
-        ui.gameObject.SetActive(false);
+        controls.GetComponent<CanvasGroup>().alpha = 0;
+        controls.GetComponent<CanvasGroup>().blocksRaycasts = false;
+        controls.GetComponent<CanvasGroup>().interactable = false;
     }
 
-    public void Next(int i){
-        switch(i){
-            case 0:
-                controls.gameObject.SetActive(false);
-                ui.gameObject.SetActive(true);
-                break;
-            case 1:
-                ui.gameObject.SetActive(false);
-                extra.gameObject.SetActive(true);
-                break;
-        }
-    }
-
-    public void Prev(int i)
+    public void openUiTutorial(GameObject ui)
     {
-        switch (i)
-        {
-            case 1:
-                ui.gameObject.SetActive(false);
-                controls.gameObject.SetActive(true);
-                break;
-            case 2:
-                extra.gameObject.SetActive(false);
-                ui.gameObject.SetActive(true);
-                break;
-        }
+        ui.GetComponent<CanvasGroup>().alpha = 1;
+        ui.GetComponent<CanvasGroup>().blocksRaycasts = true;
+        ui.GetComponent<CanvasGroup>().interactable = true;
     }
+
+    public void closeUiTutorial(GameObject ui)
+    {
+        ui.GetComponent<CanvasGroup>().alpha = 0;
+        ui.GetComponent<CanvasGroup>().blocksRaycasts = false;
+        ui.GetComponent<CanvasGroup>().interactable = false;
+    }
+
+    public void openExtrasTutorial(GameObject extras)
+    {
+        extras.GetComponent<CanvasGroup>().alpha = 1;
+        extras.GetComponent<CanvasGroup>().blocksRaycasts = true;
+        extras.GetComponent<CanvasGroup>().interactable = true;
+    }
+
+    public void closeExtrasTutorial(GameObject extras)
+    {
+        extras.GetComponent<CanvasGroup>().alpha = 0;
+        extras.GetComponent<CanvasGroup>().blocksRaycasts = false;
+        extras.GetComponent<CanvasGroup>().interactable = false;
+    }
+
+
 }
