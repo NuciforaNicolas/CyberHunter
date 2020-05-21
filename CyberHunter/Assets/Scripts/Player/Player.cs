@@ -70,9 +70,9 @@ public class Player : MonoBehaviour, IKillabble<float> {
 				SoundManager.instance.GunShootStop();
 			}
 			yield return new WaitForSeconds(0.5f);
-			CoinManager.instance.RemoveCoins((CoinManager.instance.GetCoins() * 20) / 100);
 			//CoinManager.instance.SaveCoins(); //TO IMPLEMENT WITH CHECKPOINTS
 			player.SetActive(false);
+			GameManager.instance.GameOver();
 		}
 	}
 
@@ -82,7 +82,6 @@ public class Player : MonoBehaviour, IKillabble<float> {
 		GameObject player = GameObject.FindGameObjectWithTag("Player");
 		if(player != null)
 			StartCoroutine("PlayerDeathAnim", player);
-		GameManager.instance.GameOver();
 	}
 
 	public void TakeDamage(float damage){

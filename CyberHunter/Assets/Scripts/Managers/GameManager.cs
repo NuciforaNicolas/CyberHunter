@@ -2,42 +2,68 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using UnityStandardAssets.CrossPlatformInput;
 
 public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
-    [SerializeField] Canvas playerPanel;
-    [SerializeField] Canvas gameOverPanel;
-    [SerializeField] Canvas completePanel;
-    public bool gameOver;
+    [SerializeField] Canvas playerPanel, gameOverPanel, completePanel, optionPanel;
+    bool stopGame;
     private void Start()
     {
         instance = this;
-        gameOver = false;
-        Time.timeScale = 1;
+        stopGame = false;
     }
 
     private void Update()
     {
-        if (gameOver)
+        if (stopGame)
             Time.timeScale = 0;
+        else
+            Time.timeScale = 1;
     }
 
     public void GameOver(){
-        playerPanel.gameObject.SetActive(false);
+        //playerPanel.gameObject.SetActive(false);
+        disableInputGui();
         gameOverPanel.gameObject.SetActive(true);
-        gameOver = true;
     }
 
     public void Complete()
     {
-        playerPanel.gameObject.SetActive(false);
+        //playerPanel.gameObject.SetActive(false);
+        disableInputGui();
         completePanel.gameObject.SetActive(true);
-        gameOver = true;
+    }
+
+    public void OpenOptionMenu(){
+        disableInputGui();
+        optionPanel.gameObject.SetActive(true);
+        stopGame = true;
+    }
+
+    public void CloseOptionMenu(){
+        optionPanel.gameObject.SetActive(false);
+        enableInputGui();
+        stopGame = false;
+    }
+
+    void disableInputGui(){
+        playerPanel.GetComponent<CanvasGroup>().interactable = false;
+        playerPanel.GetComponent<CanvasGroup>().blocksRaycasts = false;
+        playerPanel.GetComponent<CanvasGroup>().alpha = 0;
+    }
+
+    void enableInputGui(){
+        playerPanel.GetComponent<CanvasGroup>().interactable = true;
+        playerPanel.GetComponent<CanvasGroup>().blocksRaycasts = true;
+        playerPanel.GetComponent<CanvasGroup>().alpha = 1;
     }
 
     public void RestartGame(){
-        SceneManager.LoadScene("level1");
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    }
+
+    public void LoadMainMenu(){
+        SceneManager.LoadScene(0);
     }
 }

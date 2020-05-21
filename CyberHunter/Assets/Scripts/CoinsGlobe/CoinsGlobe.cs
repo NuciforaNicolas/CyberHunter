@@ -4,10 +4,10 @@ using UnityEngine;
 
 public class CoinsGlobe : MonoBehaviour
 {
-    public int coins;
+    [SerializeField] int coins;
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.gameObject.tag == "Player"){
+        /*if (other.gameObject.tag == "Player"){
             switch(gameObject.tag){
                 case "RedGlobe" : 
                     coins = 10;
@@ -21,10 +21,11 @@ public class CoinsGlobe : MonoBehaviour
                 case "YellowGlobe":
                     coins = 100;
                     break;
+            }*/
+            if(other.gameObject.tag == "Player"){
+                CoinManager.instance.AddCoins(coins);
+                SoundManager.instance.coinsGlobePickUpPlay();
+                gameObject.SetActive(false);
             }
-            CoinManager.instance.AddCoins(coins);
-            SoundManager.instance.coinsGlobePickUpPlay();
-            gameObject.SetActive(false);
-        }
     }
 }
