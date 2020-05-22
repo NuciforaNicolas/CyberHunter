@@ -70,7 +70,6 @@ public class Player : MonoBehaviour, IKillabble<float> {
 				SoundManager.instance.GunShootStop();
 			}
 			yield return new WaitForSeconds(0.5f);
-			//CoinManager.instance.SaveCoins(); //TO IMPLEMENT WITH CHECKPOINTS
 			player.SetActive(false);
 			GameManager.instance.GameOver();
 		}
@@ -78,7 +77,8 @@ public class Player : MonoBehaviour, IKillabble<float> {
 
 	public void Death(){
 		Debug.Log("You died");
-		//CoinManager.instance.RemoveCoins((int)((CoinManager.instance.GetCoins() * 20) / 100)); //rimuove il 20% delle monete alla morte del giocatore
+		CoinManager.instance.RemoveCoins((int)((CoinManager.instance.GetCoins() * 20) / 100)); //rimuove il 20% delle monete alla morte del giocatore
+		CoinManager.instance.SaveCoins(); //TO IMPLEMENT WITH CHECKPOINTS
 		GameObject player = GameObject.FindGameObjectWithTag("Player");
 		if(player != null)
 			StartCoroutine("PlayerDeathAnim", player);

@@ -15,9 +15,8 @@ public class PlayerInfo{
 public class LeaderBoard : MonoBehaviour
 {
 	public InputField leaderBoard, name, score;
-
 	List<PlayerInfo> collectedStats;
-
+	int maxLength = 10;
 	private void Start()
 	{
 		collectedStats = new List<PlayerInfo>();
@@ -27,7 +26,6 @@ public class LeaderBoard : MonoBehaviour
 	public void SubmitButton(){
 		PlayerInfo stats = new PlayerInfo(name.text, int.Parse(score.text));
 		collectedStats.Add(stats);
-
 		name.text = "";
 		score.text = "";
 
@@ -42,10 +40,19 @@ public class LeaderBoard : MonoBehaviour
 				collectedStats[i] = temp;
 			}
 		}
-
+		if (collectedStats.Count > maxLength)
+			RemoveExceededScore();
 		UpdateLeaderBoard();
 	}
 
+
+	void RemoveExceededScore(){
+		for (int i = maxLength; i < collectedStats.Count; i++){
+			Debug.Log("Removed " + i + " Name: " + collectedStats[i].name + " score: " + collectedStats[i].score);
+			collectedStats.RemoveAt(i);
+		}
+		
+	}
 
 	void UpdateLeaderBoard(){
 		string stats = "";
@@ -77,6 +84,7 @@ public class LeaderBoard : MonoBehaviour
 
 		for(int i = 0; i < formattedStats.Length - 2; i += 2){
 			PlayerInfo playerInfo = new PlayerInfo(formattedStats[i], int.Parse(formattedStats[i + 1]));
+			Debug.Log(i + " Name: " + formattedStats[i] + " score: " + formattedStats[i+1]);
 			collectedStats.Add(playerInfo);
 			UpdateLeaderBoardVisual();
 		}

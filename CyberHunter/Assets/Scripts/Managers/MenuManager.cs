@@ -143,7 +143,7 @@ public class MenuManager : MonoBehaviour
         complete.GetComponent<CanvasGroup>().alpha = 1;
         complete.GetComponent<CanvasGroup>().blocksRaycasts = true;
         complete.GetComponent<CanvasGroup>().interactable = true;
-        score.text = SaveGame.GetCoins().ToString();
+        score.text = CoinManager.instance.coins.ToString();
     }
     public void CloseCompleteCanvas(GameObject complete)
     {
