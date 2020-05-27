@@ -112,7 +112,7 @@ GameObject:
   - component: {fileID: 500827030}
   m_Layer: 0
   m_Name: TriggerWall
-  m_TagString: Untagged
+  m_TagString: AlienBug
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -229,6 +229,7 @@ MonoBehaviour:
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 0, b: 0, a: 1}
   m_RaycastTarget: 1
+  m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []

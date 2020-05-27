@@ -5,6 +5,12 @@ using UnityEngine;
 public class SpaceShip : Enemy
 {
 	[SerializeField] float speed;
+	bool toMove;
+
+	protected override void Start(){
+		base.Start();
+		toMove = false;
+	}
 
 	protected override void OnTriggerEnter2D(Collider2D other)
 	{
@@ -25,13 +31,18 @@ public class SpaceShip : Enemy
 	}
 	void Update()
 	{
-		Move(-speed);
+		if(toMove)
+			Move(-speed);
 	}
 
 	public override void Death()
 	{
 		base.Death();
 		GameManager.instance.Complete();
+	}
+
+	public void StartMoving(){
+		toMove = true;
 	}
 
 	protected virtual void Move(float speed)
