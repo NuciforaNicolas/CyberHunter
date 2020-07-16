@@ -6,7 +6,7 @@ using UnityEngine.UI;
 
 public class AdsManager : MonoBehaviour, IUnityAdsListener
 {
-	string gameId = "3678519";
+	string gameId = "3678791";
 	string rewardId = "rewardedVideo";
 	string normalId = "video";
 	bool testMode = false;

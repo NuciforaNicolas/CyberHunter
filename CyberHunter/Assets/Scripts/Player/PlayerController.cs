@@ -27,64 +27,66 @@ public class PlayerController : MonoBehaviour {
 		{
 
 			///BEGIN WINDOWS CONTROLS
-			/*
-			if(Input.GetKey(KeyCode.D)){
-				MoveRight();
-				Flip(1);
-			}
-			if (Input.GetKeyUp(KeyCode.D))
-				anim.SetFloat("running", 0);
 
-			if (Input.GetKey(KeyCode.A)){
-				MoveLeft();
-				Flip(-1);
-			}
-			if(Input.GetKeyUp(KeyCode.A))
-				anim.SetFloat("running", 0);
+			//if (Input.GetKey(KeyCode.D))
+			//{
+			//	MoveRight();
+			//	Flip(1);
+			//}
+			//if (Input.GetKeyUp(KeyCode.D))
+			//	anim.SetFloat("running", 0);
 
-			if (Input.GetKeyDown(KeyCode.W))
-			{
-				Jump();
-			}
+			//if (Input.GetKey(KeyCode.A))
+			//{
+			//	MoveLeft();
+			//	Flip(-1);
+			//}
+			//if (Input.GetKeyUp(KeyCode.A))
+			//	anim.SetFloat("running", 0);
 
-			tSpawnCounter += Time.deltaTime / timeToSpawn;
-			if (Input.GetKey(KeyCode.Space) && tSpawnCounter > timeToSpawn)
-			{
-				StartShoot();
-				SoundManager.instance.GunShootPlay();
-				Shoot();
-				tSpawnCounter = 0;
-			}
+			//if (Input.GetKeyDown(KeyCode.W))
+			//{
+			//	Jump();
+			//}
 
-			if (Input.GetKeyUp(KeyCode.Space))
-			{
-				StopShoot();
-				SoundManager.instance.GunShootStop();
-			}
+			//tSpawnCounter += Time.deltaTime / timeToSpawn;
+			//if (Input.GetKey(KeyCode.Space) && tSpawnCounter > timeToSpawn)
+			//{
+			//	StartShoot();
+			//	SoundManager.instance.GunShootPlay();
+			//	Shoot();
+			//	tSpawnCounter = 0;
+			//}
 
-			if (Input.GetKeyDown(KeyCode.X))
-			{
-				//isPowerActive = true;
-				SetPowerUp(1);
-			}
+			//if (Input.GetKeyUp(KeyCode.Space))
+			//{
+			//	StopShoot();
+			//	SoundManager.instance.GunShootStop();
+			//}
 
-			if (Input.GetKeyDown(KeyCode.C))
-			{
-				//isPowerActive = true;
-				SetPowerUp(2);
-			}
+			//if (Input.GetKeyDown(KeyCode.X))
+			//{
+			//	//isPowerActive = true;
+			//	SetPowerUp(1);
+			//}
 
-			if (Input.GetKeyDown(KeyCode.V))
-			{
-				//isPowerActive = true;
-				SetPowerUp(3);
-			}
+			//if (Input.GetKeyDown(KeyCode.C))
+			//{
+			//	//isPowerActive = true;
+			//	SetPowerUp(2);
+			//}
 
-			if (Input.GetKeyDown(KeyCode.E))
-			{
-				Player.instance.Heal();
-			}
-			*/
+			//if (Input.GetKeyDown(KeyCode.V))
+			//{
+			//	//isPowerActive = true;
+			//	SetPowerUp(3);
+			//}
+
+			//if (Input.GetKeyDown(KeyCode.E))
+			//{
+			//	Player.instance.Heal();
+			//}
+
 			/// END WINDOWS INPUT CONTROLS
 
 			/// BEGIN MOBILE INPUT CONTROLS
@@ -105,7 +107,7 @@ public class PlayerController : MonoBehaviour {
 			}
 
 			if (CrossPlatformInputManager.GetButtonDown("Jump"))
-					Jump();
+				Jump();
 
 			tSpawnCounter += Time.deltaTime / timeToSpawn;
 			if (CrossPlatformInputManager.GetButton("Fire") && tSpawnCounter >= timeToSpawn)
@@ -143,7 +145,7 @@ public class PlayerController : MonoBehaviour {
 				HealPlayer();
 
 			/// END MOBILE INPUT CONTROLS
-		}	
+		}
 	}
 
 	void MoveLeft(){
