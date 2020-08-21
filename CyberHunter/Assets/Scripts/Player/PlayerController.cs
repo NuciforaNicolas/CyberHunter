@@ -28,64 +28,64 @@ public class PlayerController : MonoBehaviour {
 
 			///BEGIN WINDOWS CONTROLS
 
-			//if (Input.GetKey(KeyCode.D))
-			//{
-			//	MoveRight();
-			//	Flip(1);
-			//}
-			//if (Input.GetKeyUp(KeyCode.D))
-			//	anim.SetFloat("running", 0);
+			if (Input.GetKey(KeyCode.D))
+			{
+				Move(speed);
+				Flip(1);
+			}
+			/*if (Input.GetKeyUp(KeyCode.D))
+				anim.SetFloat("running", 0);*/
 
-			//if (Input.GetKey(KeyCode.A))
-			//{
-			//	MoveLeft();
-			//	Flip(-1);
-			//}
-			//if (Input.GetKeyUp(KeyCode.A))
-			//	anim.SetFloat("running", 0);
+			if (Input.GetKey(KeyCode.A))
+			{
+				Move(-speed);
+				Flip(-1);
+			}
+			if (Input.GetKeyUp(KeyCode.A) || Input.GetKeyUp(KeyCode.D))
+				anim.SetFloat("running", 0);
 
-			//if (Input.GetKeyDown(KeyCode.W))
-			//{
-			//	Jump();
-			//}
+			if (Input.GetKeyDown(KeyCode.W))
+			{
+				Jump();
+			}
 
-			//tSpawnCounter += Time.deltaTime / timeToSpawn;
-			//if (Input.GetKey(KeyCode.Space) && tSpawnCounter > timeToSpawn)
-			//{
-			//	StartShoot();
-			//	SoundManager.instance.GunShootPlay();
-			//	Shoot();
-			//	tSpawnCounter = 0;
-			//}
+			tSpawnCounter += Time.deltaTime / timeToSpawn;
+			if (Input.GetKey(KeyCode.Space) && tSpawnCounter > timeToSpawn)
+			{
+				StartShoot();
+				SoundManager.instance.GunShootPlay();
+				Shoot();
+				tSpawnCounter = 0;
+			}
 
-			//if (Input.GetKeyUp(KeyCode.Space))
-			//{
-			//	StopShoot();
-			//	SoundManager.instance.GunShootStop();
-			//}
+			if (Input.GetKeyUp(KeyCode.Space))
+			{
+				StopShoot();
+				SoundManager.instance.GunShootStop();
+			}
 
-			//if (Input.GetKeyDown(KeyCode.X))
-			//{
-			//	//isPowerActive = true;
-			//	SetPowerUp(1);
-			//}
+			if (Input.GetKeyDown(KeyCode.X))
+			{
+				//isPowerActive = true;
+				SetPowerUp(1);
+			}
 
-			//if (Input.GetKeyDown(KeyCode.C))
-			//{
-			//	//isPowerActive = true;
-			//	SetPowerUp(2);
-			//}
+			if (Input.GetKeyDown(KeyCode.C))
+			{
+				//isPowerActive = true;
+				SetPowerUp(2);
+			}
 
-			//if (Input.GetKeyDown(KeyCode.V))
-			//{
-			//	//isPowerActive = true;
-			//	SetPowerUp(3);
-			//}
+			if (Input.GetKeyDown(KeyCode.V))
+			{
+				//isPowerActive = true;
+				SetPowerUp(3);
+			}
 
-			//if (Input.GetKeyDown(KeyCode.E))
-			//{
-			//	Player.instance.Heal();
-			//}
+			if (Input.GetKeyDown(KeyCode.E))
+			{
+				Player.instance.Heal();
+			}
 
 			/// END WINDOWS INPUT CONTROLS
 
@@ -93,12 +93,12 @@ public class PlayerController : MonoBehaviour {
 
 			if (CrossPlatformInputManager.GetButton("Right"))
 			{
-				MoveRight();
+				Move(speed);
 				Flip(1);
 			}
 			if (CrossPlatformInputManager.GetButton("Left"))
 			{
-				MoveLeft();
+				Move(-speed);
 				Flip(-1);
 			}
 			if (CrossPlatformInputManager.GetButtonUp("Left") || CrossPlatformInputManager.GetButtonUp("Right"))
@@ -148,12 +148,18 @@ public class PlayerController : MonoBehaviour {
 		}
 	}
 
-	void MoveLeft(){
+	/*void MoveLeft()
+	{
 		transform.Move(-speed);
 		anim.SetFloat("running", 1f);
-	}
+	}*/
 
-	void MoveRight(){
+	/*void MoveRight(){
+		transform.Move(speed);
+		anim.SetFloat("running", 1f);
+	}*/
+
+	void Move(float speed){
 		transform.Move(speed);
 		anim.SetFloat("running", 1f);
 	}
