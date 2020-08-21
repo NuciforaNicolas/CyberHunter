@@ -1,7 +1,6 @@
 # CyberHunter
- My first 2D game made in Unity, for Video Game development exam. I hope to add more levels soon.
- I hope you enjoy it!
- 
+ My first 2D platform game made in Unity, for Video Game development exam (University of catania).
+ This is a educational project, made with the porpoise to learn unity and c#. 
 ![SplashScreen](/Screenshots/splashscreen.PNG)
 
 ## Screenshot 1
