@@ -37,11 +37,15 @@ public class GameManager : MonoBehaviour
         stopGame = true;
     }
 
-    public void RestartGame(){
+    public void RestartLevel(){
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 
     public void LoadMainMenu(){
         SceneManager.LoadScene(0);
+    }
+
+    public void LoadLevel(int level){
+        SceneManager.LoadScene(level);
     }
 }

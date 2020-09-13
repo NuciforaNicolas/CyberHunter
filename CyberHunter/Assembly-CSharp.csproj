@@ -76,6 +76,8 @@
     <Compile Include="Assets\Samples\Cinemachine\2.5.0\Cinemachine Example Scenes\Shared\Scripts\PlayerMoveOnSphere.cs" />
     <Compile Include="Assets\Samples\Cinemachine\2.5.0\Cinemachine Example Scenes\Shared\Scripts\PlayerMovePhysics.cs" />
     <Compile Include="Assets\Scripts\Ads\AdsManager.cs" />
+    <Compile Include="Assets\Scripts\Buildings\Buildings.cs" />
+    <Compile Include="Assets\Scripts\Buildings\MoveBuilding.cs" />
     <Compile Include="Assets\Scripts\CoinsGlobe\CoinsGlobe.cs" />
     <Compile Include="Assets\Scripts\Enemies\AlienBug.cs" />
     <Compile Include="Assets\Scripts\Enemies\Drone.cs" />
@@ -99,8 +101,6 @@
     <Compile Include="Assets\Scripts\Managers\MenuManager.cs" />
     <Compile Include="Assets\Scripts\Managers\SoundManager.cs" />
     <Compile Include="Assets\Scripts\Managers\TutorialManager.cs" />
-    <Compile Include="Assets\Scripts\Menu\Buildings.cs" />
-    <Compile Include="Assets\Scripts\Menu\MoveBuilding.cs" />
     <Compile Include="Assets\Scripts\Player\Player.cs" />
     <Compile Include="Assets\Scripts\Player\PlayerController.cs" />
     <Compile Include="Assets\Scripts\Static\Extention.cs" />

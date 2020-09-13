@@ -4,13 +4,13 @@ using UnityEngine;
 
 public class Turret : Enemy {
 	bool insideTrigger = false;
-
+	[SerializeField] float timeToShoot;
 	IEnumerator Shoot(){
 		while(true){
+			yield return new WaitForSeconds(timeToShoot);
 			SoundManager.instance.TurretShootPlay();
 			SpawnBullet();
 			anim.Play("TurretShooting");
-			yield return new WaitForSeconds(2);
 		}
 	}
 

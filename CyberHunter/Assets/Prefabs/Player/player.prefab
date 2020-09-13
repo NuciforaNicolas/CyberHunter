@@ -101,6 +101,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gun: 0
+  attack: {fileID: 0}
   bulletList: []
   spawnPoint: {fileID: 4747397912005246}
   bullet: {fileID: 1758155157132030, guid: 6945f9026d71e5e488a991928d60f7e0, type: 3}
@@ -193,13 +194,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 2
   force: 4
-  push: 1
   anim: {fileID: 0}
-  timeToSpawn: 0.5
-  timePowerUp: 10
-  power1_Cost: 25
-  power2_Cost: 75
-  power3_Cost: 125
+  timeToSpawn: 0.7
+  timePowerUp: 8
+  power1_Cost: 10
+  power2_Cost: 25
+  power3_Cost: 50
+  isJumping: 0
 --- !u!95 &95461623681009122
 Animator:
   serializedVersion: 3

@@ -100,6 +100,7 @@ MonoBehaviour:
   coins: 20
   damage: 5
   healthBar: {fileID: 5778268420426381536}
+  timeToShoot: 1.2
 --- !u!95 &95530034087011398
 Animator:
   serializedVersion: 3
@@ -318,6 +319,7 @@ MonoBehaviour:
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 0, b: 0, a: 1}
   m_RaycastTarget: 1
+  m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []

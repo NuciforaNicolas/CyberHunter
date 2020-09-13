@@ -84,7 +84,7 @@ public class PlayerController : MonoBehaviour {
 
 			if (Input.GetKeyDown(KeyCode.E))
 			{
-				Player.instance.Heal();
+				HealPlayer();
 			}
 
 			/// END WINDOWS INPUT CONTROLS
