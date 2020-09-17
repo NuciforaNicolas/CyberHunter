@@ -5131,9 +5131,9 @@ MonoBehaviour:
     m_Alignment: 4
     m_AlignByGeometry: 0
     m_RichText: 1
-    m_HorizontalOverflow: 0
-    m_VerticalOverflow: 0
-    m_LineSpacing: 1
+    m_HorizontalOverflow: 1
+    m_VerticalOverflow: 1
+    m_LineSpacing: 2
   m_Text: Fighting on the rooftops
 --- !u!222 &857458404
 CanvasRenderer:
@@ -14757,7 +14757,7 @@ MonoBehaviour:
     m_PressedTrigger: Pressed
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
-  m_Interactable: 1
+  m_Interactable: 0
   m_TargetGraphic: {fileID: 2050726522}
   m_TextComponent: {fileID: 1169998331}
   m_Placeholder: {fileID: 0}

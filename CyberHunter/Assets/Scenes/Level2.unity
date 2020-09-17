@@ -2503,7 +2503,7 @@ PrefabInstance:
     - target: {fileID: 8705925760463943857, guid: 898150b828287e046ab8773e3b2c3208,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -0.15
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 8705925760463943857, guid: 898150b828287e046ab8773e3b2c3208,
         type: 3}
@@ -2740,7 +2740,7 @@ PrefabInstance:
     - target: {fileID: 8705925760463943857, guid: 898150b828287e046ab8773e3b2c3208,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -0.15
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 8705925760463943857, guid: 898150b828287e046ab8773e3b2c3208,
         type: 3}
@@ -4911,7 +4911,7 @@ PrefabInstance:
     - target: {fileID: 8705925760463943857, guid: 898150b828287e046ab8773e3b2c3208,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -0.15
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 8705925760463943857, guid: 898150b828287e046ab8773e3b2c3208,
         type: 3}
@@ -5947,12 +5947,12 @@ MonoBehaviour:
   speed: 5
   timeToSpawn: 0
   minTimeToSpawn: 0.8
-  maxTimeToSpawn: 1.5
+  maxTimeToSpawn: 1.2
   spawnPoint: {fileID: 1442424668}
   minY: -0.5
   maxY: 0.5
-  maxZ: 15
-  minZ: 15
+  maxZ: 25
+  minZ: 25
 --- !u!4 &1300611026
 Transform:
   m_ObjectHideFlags: 0
@@ -8434,7 +8434,7 @@ PrefabInstance:
     - target: {fileID: 8705925760463943857, guid: 898150b828287e046ab8773e3b2c3208,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -0.15
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 8705925760463943857, guid: 898150b828287e046ab8773e3b2c3208,
         type: 3}
@@ -8856,7 +8856,7 @@ PrefabInstance:
     - target: {fileID: 8705925760463943857, guid: 898150b828287e046ab8773e3b2c3208,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -0.15
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 8705925760463943857, guid: 898150b828287e046ab8773e3b2c3208,
         type: 3}
